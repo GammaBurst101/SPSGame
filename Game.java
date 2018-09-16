@@ -28,6 +28,10 @@ public class Game {
         move = new JPanel();
         countdown = new JPanel();
 
+        //Temporary panel colors
+        move.setBackground(new Color(255, 255, 255));
+        countdown.setBackground(new Color(200, 200, 40));
+        
         //Labels
         moveL = new JLabel();
         countdownL = new JLabel();
