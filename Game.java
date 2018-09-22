@@ -3,9 +3,10 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class Game {
-    private JPanel move, countdown;
+    private JPanel countdown;
+    private MyPanel move;
     private JButton button;
-    private JLabel moveL, countdownL;
+    private JLabel countdownL;
     private Timer timer;
     private int count;//To keep track of the time
     private Hand hand;
@@ -25,7 +26,7 @@ public class Game {
         hand = new Hand();
 
         //Panels
-        move = new JPanel();
+        move = new MyPanel();
         countdown = new JPanel();
 
         //Temporary panel colors
@@ -33,7 +34,6 @@ public class Game {
         countdown.setBackground(new Color(200, 200, 40));
         
         //Labels
-        moveL = new JLabel();
         countdownL = new JLabel();
 
         //Button
@@ -44,7 +44,6 @@ public class Game {
         timer = new Timer(1000, new TimerListener());
         
         //Add
-        move.add(moveL);
         countdown.add(countdownL);
         frame.getContentPane().add(BorderLayout.NORTH, countdown);
         frame.getContentPane().add(BorderLayout.CENTER, move);
@@ -63,7 +62,6 @@ public class Game {
         timer.stop();
         
         button.setText("Start");
-        moveL.setText("");
         countdownL.setText("");
     }
 
@@ -83,6 +81,7 @@ public class Game {
 
             switch (count) {
                 case 1:
+                    move.repaint();
                     countdownL.setText("3");
                 break;
 
@@ -95,11 +94,24 @@ public class Game {
                 break;
 
                 case 4:
-                    countdownL.setText("GO!");
                     hand.shake();
-                    moveL.setText(hand.show());
+                    move.repaint();
+                    countdownL.setText("GO!");
                     count = 0;
                 break;
+            }
+        }
+    }
+    
+    //Customized panel
+    private class MyPanel extends JPanel {
+        public void paintComponent( Graphics g) {
+            if (count == 0) {//For some mysterious reasons, the case 4 is completely run before calling repaint()
+                Image image = new ImageIcon ("images/"+hand.show()+".jpg").getImage();
+                g.drawImage(image, 0, 0, this);
+            } else {
+                g.setColor(Color.white);
+                g.fillRect(0, 0, this.getWidth(), this.getHeight());
             }
         }
     }
