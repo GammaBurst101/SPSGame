@@ -22,6 +22,7 @@ public class Game {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.setSize(500, 500);
+        frame.setResizable(false);
 
         //Hand for the play
         hand = new Hand();
