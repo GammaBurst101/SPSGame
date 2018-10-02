@@ -3,7 +3,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class Game {
-    private JPanel countdown;
+    private JPanel countdown, background;
     private MyPanel move;
     private JButton button;
     private JLabel countdownL;
@@ -18,6 +18,7 @@ public class Game {
 
     private void setUpGUI() {
         JFrame frame = new JFrame("Stone, Paper, Scissor Game");
+        frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.setSize(500, 500);
@@ -28,7 +29,9 @@ public class Game {
         //Panels
         move = new MyPanel();
         countdown = new JPanel();
-
+        countdown.setBounds( 0, 0, 500, 50);
+        move.setBounds( 0, 51, 500, 300);
+        
         //Temporary panel colors
         move.setBackground(new Color(255, 255, 255));
         countdown.setBackground(new Color(200, 200, 40));
@@ -39,15 +42,16 @@ public class Game {
         //Button
         button = new JButton("Start");
         button.addActionListener(new ButtonListener());
+        button.setBounds( 200, 360, 100, 50);
 
         //Timer initialisation
         timer = new Timer(1000, new TimerListener());
         
         //Add
         countdown.add(countdownL);
-        frame.getContentPane().add(BorderLayout.NORTH, countdown);
-        frame.getContentPane().add(BorderLayout.CENTER, move);
-        frame.getContentPane().add(BorderLayout.SOUTH, button);
+        frame.getContentPane().add(countdown);
+        frame.getContentPane().add(move);
+        frame.getContentPane().add(button);
     }
 
     private void startPlaying() {
