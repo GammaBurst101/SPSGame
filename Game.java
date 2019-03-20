@@ -10,6 +10,7 @@ public class Game {
     private Timer timer;
     private int count;//To keep track of the time
     private Hand hand;
+    private boolean isPlaying = false;//Is the game playing?
 
     public static void main (String args[]) {
         Game game = new Game();
@@ -60,12 +61,16 @@ public class Game {
         //start time
         timer.start();
         
+        isPlaying = true;
+        
         button.setText("Stop");
     }
 
     private void stopPlaying() {
         //Stop time
         timer.stop();
+        
+        isPlaying = false;
         
         button.setText("Start");
         countdownL.setText("");
@@ -112,7 +117,7 @@ public class Game {
     //Customized panel
     private class MyPanel extends JPanel {
         public void paintComponent( Graphics g) {
-            if (count == 0) {//For some mysterious reasons, the case 4 is completely run before calling repaint()
+            if (count == 0 && isPlaying) {//For some mysterious reasons, the case 4 is completely run before calling repaint()
                 Image image = new ImageIcon ("images/"+hand.show()+".jpg").getImage();
                 g.drawImage(image, 110, 75, this);
             } else {
