@@ -113,7 +113,7 @@ public class Game {
         public void paintComponent( Graphics g) {
             if (count == 0) {//For some mysterious reasons, the case 4 is completely run before calling repaint()
                 Image image = new ImageIcon ("images/"+hand.show()+".jpg").getImage();
-                g.drawImage(image, 0, 0, this);
+                g.drawImage(image, 110, 75, this);
             } else {
                 g.setColor(Color.white);
                 g.fillRect(0, 0, this.getWidth(), this.getHeight());
