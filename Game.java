@@ -23,7 +23,8 @@ public class Game {
         frame.setVisible(true);
         frame.setSize(500, 500);
         frame.setResizable(false);
-
+        frame.setLocationRelativeTo(null);//Centers the app on the screen
+        
         //Hand for the play
         hand = new Hand();
 
