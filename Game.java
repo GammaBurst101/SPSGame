@@ -35,10 +35,6 @@ public class Game {
         countdown.setBounds( 0, 0, 500, 50);
         move.setBounds( 0, 51, 500, 300);
         
-        //Temporary panel colors
-        move.setBackground(new Color(255, 255, 255));
-        countdown.setBackground(new Color(200, 200, 40));
-        
         //Labels
         countdownL = new JLabel();
 
