@@ -25,7 +25,7 @@ public class Game {
         frame.setSize(500, 500);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);//Centers the app on the screen
-        
+
         //Hand for the play
         hand = new Hand();
 
@@ -34,7 +34,7 @@ public class Game {
         countdown = new JPanel();
         countdown.setBounds( 0, 0, 500, 50);
         move.setBounds( 0, 51, 500, 300);
-        
+
         //Labels
         countdownL = new JLabel();
 
@@ -45,7 +45,7 @@ public class Game {
 
         //Timer initialisation
         timer = new Timer(1000, new TimerListener());
-        
+
         //Add
         countdown.add(countdownL);
         frame.getContentPane().add(countdown);
@@ -56,18 +56,18 @@ public class Game {
     private void startPlaying() {
         //start time
         timer.start();
-        
+
         isPlaying = true;
-        
+
         button.setText("Stop");
     }
 
     private void stopPlaying() {
         //Stop time
         timer.stop();
-        
+
         isPlaying = false;
-        
+
         button.setText("Start");
         countdownL.setText("");
     }
@@ -88,46 +88,43 @@ public class Game {
 
             switch (count) {
                 case 1:
-                    move.repaint();
-                    countdownL.setText("3");
+                move.repaint();
+                countdownL.setText("3");
                 break;
 
                 case 2:
-                    countdownL.setText("2");
+                countdownL.setText("2");
                 break;
 
                 case 3: 
-                    countdownL.setText("1");
+                countdownL.setText("1");
                 break;
 
                 case 4:
-                    hand.shake();
-                    move.repaint();
-                    countdownL.setText("GO!");
-                    count = 0;
+                hand.shake();
+                move.repaint();
+                countdownL.setText("GO!");
+                count = 0;
                 break;
             }
         }
     }
-    
+
     //Customized panel
     private class MyPanel extends JPanel {
         public void paintComponent( Graphics g) {
-            if (count == 0 && isPlaying) {//For some mysterious reasons, the case 4 is completely run before calling repaint()
+            //Paint the background of the panel
+            g.setColor(Color.white);
+            g.fillRect(0, 0, this.getWidth(), this.getHeight());
+            
+            //If it's the right time then show the computer's move
+            if (count == 0 && isPlaying) {
                 Image image = new ImageIcon ("images/"+hand.show()+".jpg").getImage();
                 g.drawImage(image, 110, 75, this);
-            } else {
-                g.setColor(Color.white);
-                g.fillRect(0, 0, this.getWidth(), this.getHeight());
             }
         }
     }
 }
-
-
-
-
-
 
 
 
