@@ -25,6 +25,7 @@ public class Game {
         frame.setSize(500, 500);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);//Centers the app on the screen
+        frame.getContentPane().setBackground(Color.white);
 
         //Hand for the play
         hand = new Hand();
@@ -33,6 +34,7 @@ public class Game {
         move = new MyPanel();
         countdown = new JPanel();
         countdown.setBounds( 0, 0, 500, 50);
+        countdown.setBackground(Color.white);
         move.setBounds( 0, 51, 500, 300);
 
         //Labels
