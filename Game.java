@@ -121,7 +121,7 @@ public class Game {
             
             //If it's the right time then show the computer's move
             if (count == 0 && isPlaying) {
-                Image image = new ImageIcon ("images/"+hand.show()+".jpg").getImage();
+                Image image = new ImageIcon (getClass().getResource("images/"+hand.show()+".jpg")).getImage();
                 g.drawImage(image, 110, 75, this);
             }
         }
