@@ -3,7 +3,7 @@
 
     This desktop app is developed by me to learn how to develop GUI in Java using the Swing package.
 
-    The game app is under development as of now.
+    You may download the game from the 'releases' section of this repo.
     
     The following are simple details regarding this application:
 
